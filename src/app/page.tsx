@@ -120,19 +120,28 @@ const portfolioData = {
   ],
   projects: [
     {
-      name: "Distributed Communications Platform",
-      description:
-        "Built a distributed communications module supporting notifications and delayed API workflows across multiple services.",
-      techStack: ["AWS SQS", "Postmark", "Node.js", "TypeScript"],
-      // github: "https://github.com/aashutosh",
-      live: null,
+      name: "AshAI – RAG Powered AI Portfolio Assistant",
+      highlights: [
+        "AI assistant answering queries from resume using RAG",
+        "Semantic search with ChromaDB + Sentence Transformers",
+        "Query-aware retrieval (Experience, Skills filtering)",
+        "Groq (LLaMA 3.1) for ultra-fast responses",
+        "Lead capture system for unknown queries",
+      ],
+      techStack: ["Python", "RAG", "LLMs", "ChromaDB", "Groq"],
+      github: "https://github.com/Aashu-1/asai-chatbot",
+      live: "https://huggingface.co/spaces/Aashutosh724/GradioApp",
     },
     {
-      name: "Hotel CRM",
-      description:
-        "Developed a web-based hotel management platform managing reservations, billing, and customer operations.",
-      techStack: ["MERN Stack", "Redis", "Cron Jobs", "WhatsApp API"],
-      // github: "https://github.com/aashutosh",
+      name: "Distributed Communications Platform",
+      highlights: [
+        "Built async notification system using AWS SQS",
+        "Handled delayed workflows across microservices",
+        "Integrated email delivery using Postmark",
+        "Improved reliability of cross-service communication",
+      ],
+      techStack: ["AWS SQS", "Node.js", "TypeScript", "Postmark"],
+      github: null,
       live: null,
     },
   ],
@@ -950,15 +959,20 @@ export default function Portfolio() {
                   </span>
                 </div>
                 <div style={{ padding: "20px" }}>
-                  <p
-                    style={{
-                      color: "var(--text-secondary)",
-                      marginBottom: "16px",
-                      lineHeight: "1.6",
-                    }}
-                  >
-                    {project.description}
-                  </p>
+                <ul
+  style={{
+    color: "var(--text-secondary)",
+    marginBottom: "16px",
+    paddingLeft: "18px",
+    lineHeight: "1.6",
+  }}
+>
+  {project.highlights.map((point, i) => (
+    <li key={i} style={{ marginBottom: "6px" }}>
+      {point}
+    </li>
+  ))}
+</ul>
                   <div
                     style={{
                       display: "flex",
@@ -967,18 +981,47 @@ export default function Portfolio() {
                       marginBottom: "16px",
                     }}
                   >
-                    {project.techStack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="skill-pill"
-                        style={{ fontSize: "0.75rem", padding: "4px 10px" }}
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                    <div style={{ marginBottom: "12px" }}>
+  <span
+    style={{
+      fontSize: "0.7rem",
+      color: "var(--accent-blue)",
+      fontWeight: "600",
+      letterSpacing: "0.5px",
+    }}
+  >
+    TECH STACK
+  </span>
+</div>
+
+<div
+  style={{
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "8px",
+    marginBottom: "16px",
+  }}
+>
+  {project.techStack.map((tech) => (
+    <span
+      key={tech}
+      style={{
+        fontSize: "0.75rem",
+        padding: "5px 10px",
+        borderRadius: "999px",
+        background: "rgba(0,122,255,0.1)",
+        border: "1px solid rgba(0,122,255,0.2)",
+        color: "var(--accent-blue)",
+        fontWeight: "500",
+      }}
+    >
+      {tech}
+    </span>
+  ))}
+</div>
                   </div>
                   <div style={{ display: "flex", gap: "12px" }}>
-                    {/* <a
+                    <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -991,7 +1034,7 @@ export default function Portfolio() {
                       }}
                     >
                       <Github size={16} /> Code
-                    </a> */}
+                    </a>
                     {project.live && (
                       <a
                         href={project.live}
